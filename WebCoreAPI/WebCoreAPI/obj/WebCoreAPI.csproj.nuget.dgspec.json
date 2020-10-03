@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\working\\test\\Augen\\AugenBookStore\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj": {}
+    "D:\\working\\test\\Augen\\augen-book-store\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj": {}
   },
   "projects": {
-    "D:\\working\\test\\Augen\\AugenBookStore\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj": {
+    "D:\\working\\test\\Augen\\augen-book-store\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\working\\test\\Augen\\AugenBookStore\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj",
+        "projectUniqueName": "D:\\working\\test\\Augen\\augen-book-store\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj",
         "projectName": "WebCoreAPI",
-        "projectPath": "D:\\working\\test\\Augen\\AugenBookStore\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj",
+        "projectPath": "D:\\working\\test\\Augen\\augen-book-store\\WebCoreAPI\\WebCoreAPI\\WebCoreAPI.csproj",
         "packagesPath": "C:\\Users\\david\\.nuget\\packages\\",
-        "outputPath": "D:\\working\\test\\Augen\\AugenBookStore\\WebCoreAPI\\WebCoreAPI\\obj\\",
+        "outputPath": "D:\\working\\test\\Augen\\augen-book-store\\WebCoreAPI\\WebCoreAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\david\\AppData\\Roaming\\NuGet\\NuGet.Config",
