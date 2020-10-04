@@ -13,6 +13,7 @@
 
 ## Summary breakdown
 - Preparation: 1 hour
-- Backend: 5 hours
+- Backend: 6 hours
 - Frontend: 7 hours
 - Styling: 1hours
+->Grand total: 15 hours
