@@ -30,13 +30,21 @@
                   {{ bookDetail.author }}
                 </p>
                 <p class="card-text">
-                  <small class="text-muted">Published Date</small>
+                  <small class="text-muted">{{
+                    formatDateString(bookDetail.publishedDate)
+                  }}</small>
                 </p>
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <p class="text-justify">
-                    <small> {{ bookDetail.description }}</small>
+                    <small>
+                      {{
+                        bookDetail.description
+                          ? bookDetail.description
+                          : "No description"
+                      }}</small
+                    >
                   </p>
                 </div>
               </div>
@@ -80,8 +88,7 @@
         <p>
           {{
             selectedService.deliveryService &&
-              "Your seleted delivery service: " +
-                selectedService.deliveryService
+            "Your seleted delivery service: " + selectedService.deliveryService
           }}
         </p>
 
@@ -104,6 +111,7 @@
 
 <script>
 import axios from "axios";
+import { formatDate } from "./../helper";
 
 export default {
   name: "BookDetail",
@@ -118,7 +126,7 @@ export default {
     };
   },
   watch: {
-    bookId: function() {
+    bookId: function () {
       this.getBook();
     },
   },
@@ -127,15 +135,18 @@ export default {
     this.getDeliveryServices();
   },
   methods: {
-    getDeliveryServices: function getDeliveryServices() {
+    getDeliveryServices: function () {
       axios.get("https://localhost:44302/api/buybook").then((res) => {
         this.deliveryServices = res.data;
 
         console.log(res.data);
       });
     },
-    getBook: function getBook() {
+    getBook: function () {
       this.isDisable = true;
+      this.bookDetail = {};
+      this.selectedService = {};
+
       axios
         .get(`https://localhost:44302/api/book/${this.bookId}`)
         .then((res) => {
@@ -143,24 +154,24 @@ export default {
           console.log(res.data);
         });
     },
-    setService: function setService(service) {
+    formatDateString: function (input) {
+      return formatDate(input);
+    },
+    setService: function (service) {
       this.selectedService = service;
       this.isDisable = false;
     },
 
-    renderSelectedDeliveryService: function renderSelectedDeliveryService(
-      service
-    ) {
+    renderSelectedDeliveryService: function (service) {
       if (service.deliveryService) {
         return <p>{service.deliveryService}</p>;
       }
     },
 
-    buyBook: function buyBook(service) {
+    buyBook: function (service) {
       axios.post("https://localhost:44302/api/buybook", service).then((res) => {
         console.log(res.data);
-        this.selectedService = {};
-        this.bookDetail = {};
+
         this.$vToastify.success(res.data);
       });
     },

@@ -3,7 +3,7 @@
     <input
       class="form-control mb-4 mt-3"
       type="search"
-      placeholder="Search by book title or author"
+      placeholder="Search by book title or author and click enter"
       name="searchTerm"
       v-on:change="handleTextChange"
     />
@@ -26,7 +26,9 @@
             <p class="card-text">
               {{ book.author }}
             </p>
-            <p class="text-secondary">{{ book.publishedDate }}</p>
+            <p class="text-secondary">
+              {{ formatDateString(book.publishedDate) }}
+            </p>
             <button
               class="btn btn-primary"
               data-toggle="modal"
@@ -49,6 +51,7 @@
 <script>
 import axios from "axios";
 import BookDetail from "./BookDetail.vue";
+import { formatDate } from "./../helper";
 
 export default {
   name: "BookList",
@@ -65,13 +68,16 @@ export default {
     this.getBooks();
   },
   methods: {
-    getBooks: function getBooks() {
+    getBooks: function () {
       axios.get("https://localhost:44302/api/book").then((res) => {
         this.books = res.data;
         console.log(res.data);
       });
     },
-    searchBook: function searchBook(books, searchTerm) {
+    formatDateString: function (input) {
+      return formatDate(input);
+    },
+    searchBook: function (books, searchTerm) {
       const result = books.filter(
         (books) =>
           books.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -80,7 +86,7 @@ export default {
       console.log("~~~search result: ", result);
       this.books = result;
     },
-    handleTextChange: function handleTextChange(e) {
+    handleTextChange: function (e) {
       console.log(e.target.value);
       const searchTerm = e.target.value;
       axios.get("https://localhost:44302/api/book").then((res) => {
@@ -88,7 +94,7 @@ export default {
       });
     },
 
-    selectBook: function selectBook(id) {
+    selectBook: function (id) {
       this.selectedBookId = id;
       console.log(this.selectedBookId);
     },
