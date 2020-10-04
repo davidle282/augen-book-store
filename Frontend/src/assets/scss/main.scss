@@ -1,0 +1,33 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.card-list {
+  img {
+    max-height: 210px;
+  }
+  &:hover {
+    box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+  }
+}
+
+.modal {
+  .modal-content {
+    .modal-body {
+      .row {
+        .col-sm-4 {
+          button {
+            min-width: 200px;
+          }
+        }
+      }
+    }
+  }
+  #btnBuy {
+    width: 100%;
+  }
+}

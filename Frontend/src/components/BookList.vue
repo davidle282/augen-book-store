@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <input
-      class="form-control mb-2 mt-3"
+      class="form-control mb-4 mt-3"
       type="search"
       placeholder="Search by book title or author"
       name="searchTerm"
@@ -16,12 +16,8 @@
         v-bind:key="book.ID"
         class="col-sm-3"
       >
-        <div class="card">
-          <img
-            style="max-height: 220px"
-            class="card-img-top pl-5 pr-5 pt-3"
-            v-bind:src="book.image"
-          />
+        <div class="card-list mb-4">
+          <img class="card-img-top pl-5 pr-5 pt-3" v-bind:src="book.image" />
 
           <div class="card-body">
             <h5 class="card-title">
@@ -34,7 +30,7 @@
             <button
               class="btn btn-primary"
               data-toggle="modal"
-              data-target="#exampleModal"
+              data-target="#bookDetailModal"
               v-on:click="selectBook(book.id)"
             >
               Select
@@ -43,109 +39,26 @@
         </div>
       </div>
     </div>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="card mb-3">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img v-bind:src="bookDetail.image" class="card-img p-3" />
-
-                  <h5 class="card-title">{{ bookDetail.title }}</h5>
-                  <p class="card-text">
-                    {{ bookDetail.author }}
-                  </p>
-                  <p class="card-text">
-                    <small class="text-muted">Published Date</small>
-                  </p>
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <p class="text-justify">
-                      <small> {{ bookDetail.description }}</small>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p class="text-left">Ship via</p>
-            <hr />
-            <div class="row">
-              <div
-                class="col-sm-4"
-                v-for="(service, index) in deliveryServices"
-                v-bind:item="service"
-                v-bind:index="index"
-                v-bind:key="index"
-              >
-                <button
-                  v-if="service.deliveryService === 'Motobike'"
-                  class="btn btn-success"
-                  v-on:click="setService(service.deliveryService)"
-                >
-                  {{ service.deliveryService }}(${{ service.deliveryCost }})
-                </button>
-                <button
-                  v-else-if="service.deliveryService === 'Train'"
-                  class="btn btn-primary"
-                  v-on:click="setService(service.deliveryService)"
-                >
-                  {{ service.deliveryService }}(${{ service.deliveryCost }})
-                </button>
-                <button
-                  v-else
-                  class="btn btn-warning"
-                  v-on:click="setService(service.deliveryService)"
-                >
-                  {{ service.deliveryService }}(${{ service.deliveryCost }})
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <p>{{ selectedService && selectedService + " service seleted" }}</p>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">
-              BUY
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <book-detail
+      v-if="selectedBookId"
+      v-bind:bookId="selectedBookId"
+    ></book-detail>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import BookDetail from "./BookDetail.vue";
 
 export default {
   name: "BookList",
-
+  components: {
+    BookDetail,
+  },
   data() {
     return {
       books: [],
-      bookDetail: {},
-      deliveryServices: [],
-      selectedService: "",
+      selectedBookId: "",
     };
   },
   mounted: function mounted() {
@@ -175,21 +88,9 @@ export default {
       });
     },
 
-    getDeliveryServices: function getDeliveryServices() {
-      axios.get("https://localhost:44302/api/buybook").then((res) => {
-        this.deliveryServices = res.data;
-        console.log(res.data);
-      });
-    },
     selectBook: function selectBook(id) {
-      axios.get(`https://localhost:44302/api/book/${id}`).then((res) => {
-        this.bookDetail = res.data;
-        this.getDeliveryServices();
-        console.log(res.data);
-      });
-    },
-    setService: function setService(service) {
-      this.selectedService = service;
+      this.selectedBookId = id;
+      console.log(this.selectedBookId);
     },
   },
 };

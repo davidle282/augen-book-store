@@ -119,30 +119,30 @@ namespace WebCoreAPI.Controllers
                 case "Motobike":
                     randomIndex = rand.Next(drivers.Count);
                     info = String.Join(Environment.NewLine,
-                        "Driver name: " + drivers[randomIndex].DriverName,
-                        "Phone no: " + drivers[randomIndex].PhoneNo,
-                        "Delevery date: " + currentDate.AddDays(1).ToString("dd/MM/yyyy"),
-                        "Delivery cost: " +submitData.DeliveryCost);
+                        "Driver name: " + drivers[randomIndex].DriverName + ", ",
+                        "Phone no: " + drivers[randomIndex].PhoneNo + ", ",
+                        "Delevery date: " + currentDate.AddDays(1).ToString("dd/MM/yyyy" + ", "),
+                        "Delivery cost: $" +submitData.DeliveryCost);
                     return info;
 
                 case "Train":
                     string trainNo = "TRN"+ rand.Next(1000).ToString();
                     randomIndex = rand.Next(stations.Length);
                     info = String.Join(Environment.NewLine,
-                        "Train no: " + trainNo,
-                        "Station of arrival: " + stations[randomIndex],
-                        "Delevery date: " + currentDate.AddDays(2).ToString("dd/MM/yyyy"),
-                        "Delivery cost: " + submitData.DeliveryCost);
+                        "Train no: " + trainNo + ", ",
+                        "Station of arrival: " + stations[randomIndex] + ", ",
+                        "Delevery date: " + currentDate.AddDays(2).ToString("dd/MM/yyyy") + ", ",
+                        "Delivery cost: $" + submitData.DeliveryCost);
                     return info;
 
                 case "Aircraft":
                     string flightNo = "AIR" + rand.Next(1000).ToString();
                     randomIndex = rand.Next(gates.Length);
                     info = String.Join(Environment.NewLine,
-                        "Flight no: " + flightNo,
-                        "Gate of arrival: " + gates[randomIndex],
-                        "Delevery date: " + currentDate.AddDays(3).ToString("dd/MM/yyyy"),
-                        "Delivery cost: " + submitData.DeliveryCost);
+                        "Flight no: " + flightNo +", ",
+                        "Gate of arrival: " + gates[randomIndex] + ", ",
+                        "Delevery date: " + currentDate.AddDays(3).ToString("dd/MM/yyyy") + ", ",
+                        "Delivery cost: $" + submitData.DeliveryCost);
                     return info;
 
                 default:
