@@ -16,6 +16,8 @@
 - Feature: Backend -> Frontend -> Minor styling -> Testing (Flow) -> Fixing
 - Final: Final Styling -> Final testing and fixing
 
+![CodingPatternDiagram](https://user-images.githubusercontent.com/48636234/95029807-5d838d00-0707-11eb-810f-e1690498becd.jpg)
+
 
 ## Summary breakdown
 - Preparation: 1 hour
