@@ -11,6 +11,12 @@
 - BookDetail component: render book detail and allow user to select delivery service and buy. Bookdetail component code can be placed in BookList component but to make the code clear and solid, separating in another component is necessary. 
 - formatDate function in helper.js: to format dateTime data (PublishedDate) that can be reused in both BookList and BookDetail components, reducing code duplicated.
 
+### Development Pattern
+
+- Feature: Backend -> Frontend -> Minor styling -> Testing (Flow) -> Fixing
+- Final: Final Styling -> Final testing and fixing
+
+
 ## Summary breakdown
 - Preparation: 1 hour
 - Backend: 6 hours
